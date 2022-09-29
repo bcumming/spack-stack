@@ -17,5 +17,6 @@ packages:
   xpmem:
     buildable: false
     externals:
+<<<<<<< HEAD
     - spec: xpmem@2.4.4
       prefix: /opt/cray/xpmem/2.4.4-2.3_9.1__gff0e1d9.shasta

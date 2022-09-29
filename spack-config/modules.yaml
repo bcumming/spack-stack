@@ -1,4 +1,21 @@
 modules:
+  # Paths to check when creating modules for all module sets
+  prefix_inspections:
+    bin:
+      - PATH
+    lib:
+      - LD_LIBRARY_PATH
+    lib64:
+      - LD_LIBRARY_PATH
+
   default:
+    arch_folder: false
+    # Where to install modules
     roots:
-      tcl: /user-environment
+      tcl: /user-environment/modules
+    tcl:
+      hash_length: 0
+      naming_scheme: '${PACKAGE}/${VERSION}-${COMPILER}'
+      exclude_implicits: true
+      include: ['gcc', 'nvhpc']
+      exclude: ['%gcc@7.5.0']

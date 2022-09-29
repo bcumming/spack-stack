@@ -6,9 +6,9 @@ spack.lock
 install
 tools/view
 */*/Makefile
-Make.user
 /store
 /tmp
 /cache
+/spack
 spack-version
 build.tar.gz

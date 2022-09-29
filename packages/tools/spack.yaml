@@ -11,16 +11,17 @@ spack:
   - meson
   - ninja
   - perl
-  - python@3.7 #+optimizations (disable PGO for <=3.7, too slow.)
-  - vim +python +lua +perl +cscope features=huge
-  - emacs
+  
+  #- python@3.7 #+optimizations (disable PGO for <=3.7, too slow.)
+  - squashfs +gzip +lz4 +lzo +xz +zstd
   - libtree
   - git
-  - tmux
   - tree
-  - tar
-  - squashfs +gzip +lz4 +lzo +xz +zstd
-  - reframe
+  #- tmux
+  #- tar
+  #- reframe
+  #- vim +python +lua +perl +cscope features=huge
+  #- emacs
   view: false
   packages:
     all:

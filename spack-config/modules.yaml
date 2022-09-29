@@ -14,8 +14,15 @@ modules:
     roots:
       tcl: /user-environment/modules
     tcl:
-      hash_length: 0
-      naming_scheme: '${PACKAGE}/${VERSION}-${COMPILER}'
-      exclude_implicits: true
-      include: ['gcc', 'nvhpc']
-      exclude: ['%gcc@7.5.0']
+      all:
+        autoload: none
+      projections:
+        all: '{name}/{version}-{compiler.name}-{compiler.version}'
+#     hash_length: 0
+#     naming_scheme: '${package}/${version}-${compiler}'
+#     exclude_implicits: true
+#     include: ['gcc']
+#     exclude: ['%gcc@7.5.0']
+#     all:
+#       autoload: none
+      

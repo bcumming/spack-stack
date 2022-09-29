@@ -46,8 +46,7 @@ store.squashfs: packages generate-config
 	$(SANDBOX) "$$($(SANDBOX) $(SPACK) -e ./compilers/1-gcc find --format='{prefix}' squashfs | head -n1)/bin/mksquashfs" $(STORE) $@ -all-root -no-recovery -noappend -Xcompression-level 3
 
 modules: packages generate-config
-	$(SANDBOX) $(SPACK) module tcl refresh --delete-tree --upstream-modules
-	$(SANDBOX) $(SPACK) find
+	$(SANDBOX) $(SPACK) module tcl refresh --upstream-modules --delete-tree
 
 # A backup of all the generated files during the build, useful for posterity,
 # excluding the binaries themselves, since they're in the squashfs file

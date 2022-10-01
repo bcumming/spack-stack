@@ -1,18 +1,3 @@
-# -------------------------------------------------------------------------
-# This is the default configuration for Spack's module file generation.
-#
-# Settings here are versioned with Spack and are intended to provide
-# sensible defaults out of the box. Spack maintainers should edit this
-# file to keep it current.
-#
-# Users can override these settings by editing the following files.
-#
-# Per-spack-instance settings (overrides defaults):
-#   $SPACK_ROOT/etc/spack/modules.yaml
-#
-# Per-user settings (overrides default and site settings):
-#   ~/.spack/modules.yaml
-# -------------------------------------------------------------------------
 modules:
   # Paths to check when creating modules for all module sets
   prefix_inspections:
@@ -23,17 +8,20 @@ modules:
     lib64:
       - LD_LIBRARY_PATH
 
-  # These are configurations for the module set named "default"
   default:
     arch_folder: false
     # Where to install modules
     roots:
-        tcl: /user-environment/modules 
-    # What type of modules to use
-    enable:
-      - tcl
+      tcl: /user-environment/modules
     tcl:
-      hash_length: 7
-      naming_scheme: '${PACKAGE}/${VERSION}-${COMPILERVER}'
       all:
         autoload: none
+      hash_length: 0
+      exclude_implicits: true
+      include: ['gcc', 'cuda']
+      exclude: ['%gcc@7.5.0', 'gcc %gcc@7.5.0']
+      projections:
+        all: '{name}/{version}-{compiler.name}'
+        nvhpc: '{name}/{version}'
+        cray-mpich-binary: '{name}/{version}'
+        gcc: '{name}/{version}-{compiler}'

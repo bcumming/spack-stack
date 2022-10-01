@@ -30,12 +30,14 @@ export SPACK_COLOR := always
 # config files in ~/.spack. Note that our recommended bwrap setup already puts
 # a tmpfs in the home folder, but when bwrap isn't used, this also helps a bit
 # with reproducibility.
-export SPACK_USER_CONFIG_PATH := $(SOFTWARE_STACK_PROJECT)/spack-config
+#export SPACK_USER_CONFIG_PATH := $(SOFTWARE_STACK_PROJECT)/spack-config
+export SPACK_USER_CONFIG_PATH := /dev/null
+#export SPACK_USER_CONFIG_PATH := ${STORE}/config
 
 # Set up the system config scope (replace <name> with the system name)
 # this should have the system packages we don't want build, for example
 # slurm, pmix, etc. Also should have the system compiler.
-export SPACK_SYSTEM_CONFIG_PATH := $(SOFTWARE_STACK_PROJECT)/config/hohgant
+export SPACK_SYSTEM_CONFIG_PATH := $(SOFTWARE_STACK_PROJECT)/config/manali
 
 # Put clingo and friends here...
 export SPACK_USER_CACHE_PATH := $(SOFTWARE_STACK_PROJECT)/cache

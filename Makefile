@@ -43,7 +43,7 @@ packages: compilers
 	$(SANDBOX) $(MAKE) -C $@
 
 modules: packages generate-config
-	$(SANDBOX) $(SPACK) module tcl refresh --upstream-modules --delete-tree
+	$(SANDBOX) $(SPACK) -C $(SOFTWARE_STACK_PROJECT)/spack-config module tcl refresh --upstream-modules --delete-tree
 #	$(SANDBOX) cp spack-config/modules.yaml ${SOFTWARE_STACK_PROJECT}/config/manali
 
 # Create a squashfs file from the installed software.

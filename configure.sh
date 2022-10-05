@@ -25,3 +25,5 @@ fi
 echo "=== patching cray-mpich-binary spack package"
 mkdir -p spack/var/spack/repos/builtin/packages/cray-mpich-binary
 cp mpich-package.py spack/var/spack/repos/builtin/packages/cray-mpich-binary/package.py
+
+echo "==== WARNING - we need to create an upstreams.yaml"

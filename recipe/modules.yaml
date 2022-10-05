@@ -22,7 +22,6 @@ modules:
       exclude: ['%gcc@7.5.0', 'gcc %gcc@7.5.0']
       projections:
         all: '{name}/{version}-{compiler.name}'
-        nvhpc: '{name}/{version}'
         gcc: '{name}/{version}'
         cray-mpich-binary: '{name}/{version}'
         python: '{name}/{version}'

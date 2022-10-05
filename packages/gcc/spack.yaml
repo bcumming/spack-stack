@@ -7,8 +7,7 @@ spack:
   specs:
   - cray-mpich-binary
   - osu-micro-benchmarks@5.9 +cuda cuda_arch=80
-  - netcdf-fortran@4.5.4
-  - hdf5 +mpi
+  - hdf5 +mpi ^cray-mpich-binary
   view: false
   packages:
     all:

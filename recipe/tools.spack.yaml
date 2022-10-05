@@ -8,20 +8,11 @@ spack:
   - ccache
   - cmake
   - gmake
-  - meson
   - ninja
-  - perl
-  - python@3.7
   - python@3.10
-  - vim +python +lua +perl +cscope features=huge
-  - emacs
   - libtree
-  - git
-  - tmux
   - tree
-  - tar
   - squashfs +gzip +lz4 +lzo +xz +zstd
-  - reframe
   view: false
   packages:
     all:

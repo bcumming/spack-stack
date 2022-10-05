@@ -24,4 +24,4 @@ fi
 
 echo "=== patching cray-mpich-binary spack package"
 mkdir -p spack/repos/builtin/packages/cray-mpich-binary
-cp mpich-package.py spack/repos/builtin/packages/cray-mpich-binary
+cp mpich-package.py spack/repos/builtin/packages/cray-mpich-binary/package.py

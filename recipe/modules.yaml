@@ -19,10 +19,14 @@ modules:
       hash_length: 0
       exclude_implicits: true
       include: ['cuda']
-      exclude: ['%gcc@7.5.0', 'gcc %gcc@7.5.0']
+      exclude: ['%gcc@7.5.0', 'gcc %gcc@7.5.0', 'cdo', 'nco', 'netcdf-fortran', 'osu-micro-benchmarks']
       projections:
         all: '{name}/{version}-{compiler.name}'
         nvhpc: '{name}/{version}'
         gcc: '{name}/{version}'
+        cray-mpich-binary+cuda: '{name}/{version}-cuda'
         cray-mpich-binary: '{name}/{version}'
         python: '{name}/{version}'
+        refram: '{name}/{version}'
+        ^mpi: '{name}/{version}-mpi'
+        ^cuda: '{name}/{version}-cuda'

@@ -15,13 +15,19 @@ done
 
 mkdir -p module-config
 rm -rf module-config/*
-recipe="${recipe_path}/modules.yaml"
-if [ -f "${recipe}" ]
-then
-    echo "=== setting custom modules configuration: ${recipe}"
-    cp "${recipe}" module-config
-fi
+for config in modules upstream
+do
+    recipe="${recipe_path}/${config}.yaml"
+    if [ -f "${recipe}" ]
+    then
+        echo "=== setting custom modules configuration: ${recipe}"
+        cp "${recipe}" module-config
+    fi
+end
 
 echo "=== patching cray-mpich-binary spack package"
-mkdir -p spack/repos/builtin/packages/cray-mpich-binary
-cp mpich-package.py spack/repos/builtin/packages/cray-mpich-binary
+
+mkdir -p spack/var/spack/repos/builtin/packages/cray-mpich-binary
+cp cray-mpich-binary-package.py spack/var/spack/repos/builtin/packages/cray-mpich-binary/package.py
+
+echo "==== WARNING - we need to create an upstreams.yaml"

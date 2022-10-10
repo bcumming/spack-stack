@@ -1,0 +1,4 @@
+
+upstreams:
+  spack-instance-1:
+    install_tree: /user-environment

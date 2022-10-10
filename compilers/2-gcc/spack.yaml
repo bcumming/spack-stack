@@ -5,6 +5,7 @@ spack:
   - compilers.yaml
   specs:
   - gcc@11
+  - cuda
   view: false
   packages:
     gcc:

@@ -2,12 +2,23 @@
 
 MAKEFLAGS += --output-sync=recurse
 
-.PHONY: all .locks
+.PHONY: all .locks .packages.yaml
 
-all: 2-gcc/generated/env
+all: 2-gcc/generated/build_cache 1-gcc/generated/build_cache
+
+# Ensure that package yaml files are never removed as intermediate files...
+.packages.yaml: bootstrap/packages.yaml gcc/packages.yaml
 
 # Make sure spack.lock files are never removed as intermediate files...
 .locks: 1-gcc/spack.lock 2-gcc/spack.lock
+
+1-gcc/generated/build_cache: 1-gcc/generated/env
+	$(SPACK) -e ./1-gcc buildcache create --rebuild-index --allow-root --only=package -m alpscache $$($(SPACK) -e ./1-gcc find --format '/$${hash}')
+	touch $@
+
+2-gcc/generated/build_cache: 2-gcc/generated/env
+	$(SPACK) -e ./2-gcc buildcache create --rebuild-index --allow-root --only=package -m alpscache $$($(SPACK) -e ./2-gcc find --format '/$${hash}')
+	touch $@
 
 # Configure the install location.
 1-gcc/config.yaml 2-gcc/config.yaml: | store

@@ -32,7 +32,12 @@ spack-setup: spack-version
 	$(SANDBOX) $(SPACK) spec zlib > /dev/null; \
 	printf "yup\n"
 
-compilers: spack-setup
+mirror-setup: spack-setup
+	$(SANDBOX) $(SPACK) buildcache keys --install --trust
+	$(SANDBOX) $(SPACK) gpg trust /scratch/e1000/meteoswiss/scratch/bcumming/build-cache/spack-push-key.gpg
+	touch mirror-setup
+
+compilers: mirror-setup
 	$(SANDBOX) $(MAKE) -C $@
 
 generate-config: compilers

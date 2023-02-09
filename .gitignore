@@ -14,4 +14,5 @@ spack-version
 build.tar.gz
 spack
 module-config
+mirror-setup
 .*.swp

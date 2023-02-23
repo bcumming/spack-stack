@@ -5,23 +5,23 @@ spack:
   concretizer:
     unify: when_possible
   specs:
-  - ccache
+  #- ccache
   - cmake
-  - gmake
-  - meson
+  #- gmake
+  #- meson
   - ninja
   - perl
-  - python@3.7
+  #- python@3.7
   - python@3.10
-  - vim +python +lua +perl +cscope features=huge
-  - emacs
+  # - vim +python +lua +perl +cscope features=huge
+  # - emacs
   - libtree
-  - git
-  - tmux
+  #- git
+  #- tmux
   - tree
-  - tar
-  - squashfs +gzip +lz4 +lzo +xz +zstd
-  - reframe
+  #- tar
+  #- squashfs +gzip +lz4 +lzo +xz +zstd
+  #- reframe
   view: false
   packages:
     all:

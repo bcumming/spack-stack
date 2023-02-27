@@ -62,7 +62,7 @@ class CrayMpichBinary(Package):
     with when("@8.1.21.1-nvhpc"):
         conflicts("%nvhpc@:20.6")
         conflicts("+rocm")
-        conflicts("~cuda")
+        #conflicts("~cuda")
         for __compiler in spack.compilers.supported_compilers():
             if __compiler != "nvhpc":
                 conflicts("%{}".format(__compiler), msg="nvhpc required")
@@ -77,7 +77,7 @@ class CrayMpichBinary(Package):
     with when("@8.1.18.4-nvhpc"):
         conflicts("%nvhpc@:20.6")
         conflicts("+rocm")
-        conflicts("~cuda")
+        #conflicts("~cuda")
         for __compiler in spack.compilers.supported_compilers():
             if __compiler != "nvhpc":
                 conflicts("%{}".format(__compiler), msg="nvhpc required")

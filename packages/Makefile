@@ -7,10 +7,10 @@ NVHPC_PREFIX = $$($(SPACK) -e ../compilers/3-llvm find --format '{prefix}' nvhpc
 
 .PHONY: all .locks
 
-all: gcc/generated/env tools/generated/env
+all: gcc/generated/env tools/generated/env nvhpc/generated/env
 
 # Make sure spack.lock files are never removed as intermediate files...
-.locks: gcc/spack.lock tools/spack.lock
+.locks: gcc/spack.lock tools/spack.lock nvhpc/spack.lock
 
 gcc/config.yaml tools/config.yaml nvhpc/config.yaml: | store
 	$(SPACK) config --scope=user add config:install_tree:root:$(STORE)

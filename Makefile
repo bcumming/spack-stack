@@ -34,7 +34,7 @@ spack-setup: spack-version
 
 mirror-setup: spack-setup
 	$(SANDBOX) $(SPACK) buildcache keys --install --trust
-	$(SANDBOX) $(SPACK) gpg trust /users/bcumming/spack-cache/spack-push-key.gpg
+	$(SANDBOX) $(SPACK) gpg trust /scratch/mchstor2/users/bcumming/spack-cache/spack-push-key.gpg
 	touch mirror-setup
 
 compilers: mirror-setup

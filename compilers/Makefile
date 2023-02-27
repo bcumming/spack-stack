@@ -4,13 +4,13 @@ MAKEFLAGS += --output-sync=recurse
 
 .PHONY: all .locks
 
-all: 2-gcc/generated/build_cache 1-gcc/generated/build_cache
+all: 2-gcc/generated/build_cache 1-gcc/generated/build_cache 3-llvm/generated/build_cache
 
 # Make sure spack.lock files are never removed as intermediate files...
 .locks: 1-gcc/spack.lock 2-gcc/spack.lock 3-llvm/spack.lock
 
 # Configure the install location.
-1-gcc/config.yaml 2-gcc/config.yaml: | store
+1-gcc/config.yaml 2-gcc/config.yaml 3-llvm/config.yaml: | store
 	$(SPACK) config --scope=user add config:install_tree:root:$(STORE)
 
 # build cache
@@ -20,6 +20,10 @@ all: 2-gcc/generated/build_cache 1-gcc/generated/build_cache
 
 2-gcc/generated/build_cache: 2-gcc/generated/env
 	$(SPACK) -e ./2-gcc buildcache create --rebuild-index --allow-root --only=package -m alpscache $$($(SPACK) -e ./2-gcc find --format '/$${hash}')
+	touch $@
+
+3-llvm/generated/build_cache: 3-llvm/generated/env
+	$(SPACK) -e ./3-llvm buildcache create --rebuild-index --allow-root --only=package -m alpscache $$($(SPACK) -e ./3-llvm find --format '/$${hash}')
 	touch $@
 
 # Detect some build-type packages.

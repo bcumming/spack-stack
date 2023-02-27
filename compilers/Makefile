@@ -4,14 +4,23 @@ MAKEFLAGS += --output-sync=recurse
 
 .PHONY: all .locks
 
-all: 2-gcc/generated/env
+all: 2-gcc/generated/build_cache 1-gcc/generated/build_cache
 
 # Make sure spack.lock files are never removed as intermediate files...
-.locks: 1-gcc/spack.lock 2-gcc/spack.lock
+.locks: 1-gcc/spack.lock 2-gcc/spack.lock 3-llvm/spack.lock
 
 # Configure the install location.
 1-gcc/config.yaml 2-gcc/config.yaml: | store
 	$(SPACK) config --scope=user add config:install_tree:root:$(STORE)
+
+# build cache
+1-gcc/generated/build_cache: 1-gcc/generated/env
+	$(SPACK) -e ./1-gcc buildcache create --rebuild-index --allow-root --only=package -m alpscache $$($(SPACK) -e ./1-gcc find --format '/$${hash}')
+	touch $@
+
+2-gcc/generated/build_cache: 2-gcc/generated/env
+	$(SPACK) -e ./2-gcc buildcache create --rebuild-index --allow-root --only=package -m alpscache $$($(SPACK) -e ./2-gcc find --format '/$${hash}')
+	touch $@
 
 # Detect some build-type packages.
 1-gcc/packages.yaml 2-gcc/packages.yaml:
@@ -19,6 +28,9 @@ all: 2-gcc/generated/env
 
 2-gcc/compilers.yaml: 1-gcc/generated/env
 	$(SPACK) compiler find --scope=user $(call compiler_bin_dirs, $$($(SPACK) -e ./1-gcc find --format '{prefix}' gcc@11))
+
+3-llvm/compilers.yaml: 2-gcc/generated/env
+	$(SPACK) compiler find --scope=user $(call compiler_bin_dirs, $$($(SPACK) -e ./2-gcc find --format '{prefix}' gcc@11))
 
 include ../Make.inc
 
@@ -30,6 +42,10 @@ include 1-gcc/Makefile
 
 ifneq (,$(wildcard 1-gcc/Makefile))
 include 2-gcc/Makefile
+endif
+
+ifneq (,$(wildcard 2-gcc/Makefile))
+include 3-llvm/Makefile
 endif
 
 endif

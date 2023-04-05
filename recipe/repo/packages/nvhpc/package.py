@@ -21,7 +21,7 @@ from spack.util.prefix import Prefix
 #  - package key must be in the form '{os}-{arch}' where 'os' is in the
 #    format returned by platform.system() and 'arch' by platform.machine()
 _versions = {
-    "22.9": {
+    "23.3": {
         "Linux-x86_64": (
             "65c97207e7ac2d5f163bc50cb017a2c9519a7c9b2b3d12146d3dd433655963f2",
             "https://developer.download.nvidia.com/hpc-sdk/23.3/nvhpc_2023_233_Linux_x86_64_cuda_12.0.tar.gz",

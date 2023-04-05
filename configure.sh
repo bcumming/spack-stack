@@ -12,7 +12,7 @@ then
 fi
 
 # TODO update this for the MCH mount point
-store_root="/mch-environment/v3"
+store_root="/mch-environment/devt"
 
 config_path="$(pwd)/store/config"
 mkdir -p "$config_path"

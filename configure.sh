@@ -32,6 +32,7 @@ then
     (cd spack && git checkout a8b1314d188149e696eb8e7ba3e4d0de548f1894)
 fi
 cp -R ${recipe_path}/repo/packages/cray-mpich/package.py spack/var/spack/repos/builtin/packages/cray-mpich/
+cp -R ${recipe_path}/repo/packages/nvhpc/package.py spack/var/spack/repos/builtin/packages/nvhpc/
 
 for target in gcc tools nvhpc
 do
